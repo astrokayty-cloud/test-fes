@@ -17,7 +17,7 @@
 
     /* ===== ヘッダー ===== */
     .site-header {
-      background: #1E1E1E;
+      background: #d8f0d0;
       padding: 16px 20px;
       text-align: center;
     }
@@ -28,8 +28,8 @@
 
     /* ===== ヒーローセクション ===== */
     .hero {
-      background: linear-gradient(160deg, #1E1E1E 0%, #2D2D2D 60%, #1a3a4a 100%);
-      color: #fff;
+      background: linear-gradient(160deg, #c8e8b8 0%, #d8f0cc 60%, #c0e8d0 100%);
+      color: #1a3a1a;
       padding: 40px 20px 50px;
       text-align: center;
       position: relative;
@@ -40,7 +40,7 @@
       position: absolute;
       top: -60px; right: -60px;
       width: 220px; height: 220px;
-      background: rgba(0, 176, 240, 0.08);
+      background: rgba(0, 176, 100, 0.10);
       border-radius: 50%;
     }
     .hero::after {
@@ -48,7 +48,7 @@
       position: absolute;
       bottom: -40px; left: -40px;
       width: 160px; height: 160px;
-      background: rgba(245, 166, 35, 0.08);
+      background: rgba(100, 200, 80, 0.10);
       border-radius: 50%;
     }
     .hero-logo-wrap {
@@ -57,7 +57,7 @@
     .hero-logo-wrap img {
       max-width: 240px;
       height: auto;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
     }
     .hero-event-name {
       font-size: clamp(20px, 5vw, 28px);
@@ -77,8 +77,8 @@
       margin-bottom: 36px;
     }
     .event-info-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(100,160,80,0.25);
       border-radius: 12px;
       padding: 14px 20px;
       min-width: 180px;
@@ -95,7 +95,7 @@
     .event-info-card .value {
       font-size: 15px;
       font-weight: 700;
-      color: #fff;
+      color: #1a3a1a;
       line-height: 1.5;
     }
 
@@ -119,16 +119,11 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 28px rgba(245,166,35,0.5);
     }
-    .btn-apply.disabled {
-      background: linear-gradient(135deg, #aaa, #888);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      cursor: default;
-    }
-    .btn-apply.disabled:hover { transform: none; }
+    /* disabled クラスは不使用（申込URL確定のため削除） */
     .apply-note {
       margin-top: 10px;
       font-size: 12px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(30,80,20,0.6);
     }
 
     /* ===== セクション共通 ===== */
@@ -186,13 +181,20 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.10);
     }
-    .exhibitor-icons {
-      display: flex;
-      gap: 4px;
-      font-size: 16px;
+    /* ===== 業種バッジ ===== */
+    .genre-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
       flex-shrink: 0;
-      min-width: 56px;
+      letter-spacing: 0.04em;
     }
+    .genre-noen      { background: #8fcc5a; color: #fff; }
+    .genre-chikusan  { background: #F5A623; color: #fff; }
+    .genre-nogyokanren { background: #3bbde8; color: #fff; }
     .exhibitor-name {
       flex: 1;
       font-size: 15px;
@@ -351,10 +353,41 @@
     }
     .job-url-link:hover { text-decoration: underline; }
 
+    /* ===== メッセージセクション ===== */
+    .message-section {
+      background: #fff;
+    }
+    .message-body {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #f7fbf4;
+      border-left: 5px solid #8fcc5a;
+      border-radius: 0 16px 16px 0;
+      padding: 28px 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .message-lead {
+      font-size: 18px;
+      font-weight: 900;
+      color: #2a5a18;
+      line-height: 1.5;
+    }
+    .message-body p {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.9;
+    }
+    .message-body strong {
+      color: #F5A623;
+      font-weight: 800;
+    }
+
     /* ===== フッター ===== */
     .site-footer {
-      background: #1E1E1E;
-      color: rgba(255,255,255,0.5);
+      background: #b8dca8;
+      color: rgba(30,80,20,0.7);
       text-align: center;
       padding: 24px 20px;
       font-size: 12px;
@@ -398,10 +431,9 @@
   </div>
 
   <div>
-    <button class="btn-apply disabled" onclick="alert('申込フォームは現在準備中です。\n公開まで今しばらくお待ちください！')">
+    <a class="btn-apply" href="https://e-ve.event-form.jp/event/127871/c4lKXM" target="_blank" rel="noopener">
       📝 参加申込はこちら
-    </button>
-    <p class="apply-note">※ 申込フォームは準備中です</p>
+    </a>
   </div>
 </section>
 
@@ -420,7 +452,7 @@
       ▼ 企業を追加するときはここをコピーしてください ▼
       =============================================
       <div class="exhibitor-item" onclick="openModal('company-XXX')">
-        <div class="exhibitor-icons">🐄🥛</div>
+        <span class="genre-badge genre-noen">農園</span>
         <div class="exhibitor-name">企業名</div>
         <div class="exhibitor-arrow">›</div>
       </div>
@@ -429,19 +461,19 @@
 
     <!-- サンプル企業（後から差し替えてください） -->
     <div class="exhibitor-item" onclick="openModal('company-sample1')">
-      <div class="exhibitor-icons">🐄🥛🌾</div>
+      <span class="genre-badge genre-chikusan">畜産</span>
       <div class="exhibitor-name">株式会社〇〇牧場</div>
       <div class="exhibitor-arrow">›</div>
     </div>
 
     <div class="exhibitor-item" onclick="openModal('company-sample2')">
-      <div class="exhibitor-icons">🐖🌿</div>
+      <span class="genre-badge genre-noen">農園</span>
       <div class="exhibitor-name">農業生産法人△△ファーム</div>
       <div class="exhibitor-arrow">›</div>
     </div>
 
     <div class="exhibitor-item" onclick="openModal('company-sample3')">
-      <div class="exhibitor-icons">🥚🐓</div>
+      <span class="genre-badge genre-nogyokanren">農業関連</span>
       <div class="exhibitor-name">有限会社□□エッグ</div>
       <div class="exhibitor-arrow">›</div>
     </div>
@@ -452,15 +484,28 @@
   <p class="coming-soon-note">▶ 出展企業情報は随時追加予定です</p>
 </section>
 
+<!-- ===== 運営からのメッセージセクション ===== -->
+<section class="section message-section">
+  <div class="section-title-wrap">
+    <span class="section-title-en">Message</span>
+    <span class="section-title-ja">あぐりナビ就活フェス運営からのメッセージ</span>
+  </div>
+  <div class="message-body">
+    <p class="message-lead">「農業の仕事」と聞いて、何を思い浮かべますか？</p>
+    <p>農業界には、酪農・畜産・農園・農業関連など、多様な業種、そして生産・流通・営業・IT活用など、幅広い職種と役割があります！<br>今回出展するのは、そんな農業界を多様な形でリードする企業です。夏のインターンシップ募集を行っている企業も。</p>
+    <p>対象は摂南大学の全学年ですが、進路をじっくり考えたい<strong>2・3年生にとって特におすすめ</strong>のイベント。</p>
+    <p>農業界の仕事の広さ・面白さを肌で感じ、自分の将来のヒントを見つけてください。農業の世界で一緒に働く仲間を、各社が待っています。</p>
+  </div>
+</section>
+
 <!-- ===== 再度申込ボタン（下部） ===== -->
-<section style="background:#1E1E1E; padding:40px 20px; text-align:center;">
-  <p style="color:rgba(255,255,255,0.7); margin-bottom:16px; font-size:14px; font-weight:700;">
+<section style="background:#c0e0b0; padding:40px 20px; text-align:center;">
+  <p style="color:#1a4a12; margin-bottom:16px; font-size:14px; font-weight:700;">
     参加のお申込みはこちらから
   </p>
-  <button class="btn-apply disabled" onclick="alert('申込フォームは現在準備中です。\n公開まで今しばらくお待ちください！')">
+  <a class="btn-apply" href="https://e-ve.event-form.jp/event/127871/c4lKXM" target="_blank" rel="noopener">
     📝 参加申込はこちら
-  </button>
-  <p style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.35);">※ 申込フォームは準備中です</p>
+  </a>
 </section>
 
 <!-- ===== フッター ===== -->
@@ -478,7 +523,6 @@
   <div id="company-XXX" class="modal-overlay" onclick="closeModalOutside(event)">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('company-XXX')">×</button>
-      <div class="modal-icons">🐄🥛</div>
       <div class="modal-company-logo">🏢</div>
       <div class="modal-company-name">企業名</div>
       <div class="modal-company-desc">企業紹介文をここに入れてください。</div>
@@ -514,7 +558,6 @@
 <div id="company-sample1" class="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal('company-sample1')">×</button>
-    <div class="modal-icons">🐄🥛🌾</div>
     <div class="modal-company-logo">🏢</div>
     <div class="modal-company-name">株式会社〇〇牧場</div>
     <div class="modal-company-desc">（企業紹介文がここに入ります。企業の特徴・強み・社風などを記載します。）</div>
@@ -548,7 +591,6 @@
 <div id="company-sample2" class="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal('company-sample2')">×</button>
-    <div class="modal-icons">🐖🌿</div>
     <div class="modal-company-logo">🏢</div>
     <div class="modal-company-name">農業生産法人△△ファーム</div>
     <div class="modal-company-desc">（企業紹介文がここに入ります。）</div>
@@ -582,7 +624,6 @@
 <div id="company-sample3" class="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal('company-sample3')">×</button>
-    <div class="modal-icons">🥚🐓</div>
     <div class="modal-company-logo">🏢</div>
     <div class="modal-company-name">有限会社□□エッグ</div>
     <div class="modal-company-desc">（企業紹介文がここに入ります。）</div>
