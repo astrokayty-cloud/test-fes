@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>農業関連特化！企業合同説明会 | あぐリナビ就活FES.</title>
+  <style>
+    /* ===== リセット & ベース ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+      background: #F5F0E8;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      background: #1E1E1E;
+      padding: 16px 20px;
+      text-align: center;
+    }
+    .site-header img.logo {
+      max-width: 200px;
+      height: auto;
+    }
+
+    /* ===== ヒーローセクション ===== */
+    .hero {
+      background: linear-gradient(160deg, #1E1E1E 0%, #2D2D2D 60%, #1a3a4a 100%);
+      color: #fff;
+      padding: 40px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: rgba(0, 176, 240, 0.08);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      background: rgba(245, 166, 35, 0.08);
+      border-radius: 50%;
+    }
+    .hero-logo-wrap {
+      margin-bottom: 24px;
+    }
+    .hero-logo-wrap img {
+      max-width: 240px;
+      height: auto;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+    }
+    .hero-event-name {
+      font-size: clamp(20px, 5vw, 28px);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      margin-bottom: 28px;
+    }
+    .hero-event-name span.accent-orange { color: #F5A623; }
+    .hero-event-name span.accent-blue   { color: #00B0F0; }
+
+    .event-info-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .event-info-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 14px 20px;
+      min-width: 180px;
+      text-align: left;
+    }
+    .event-info-card .label {
+      font-size: 11px;
+      color: #F5A623;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .event-info-card .value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    /* ===== 申込ボタン ===== */
+    .btn-apply {
+      display: inline-block;
+      background: linear-gradient(135deg, #F5A623, #e8921a);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      padding: 16px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      box-shadow: 0 6px 20px rgba(245,166,35,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-apply:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245,166,35,0.5);
+    }
+    .btn-apply.disabled {
+      background: linear-gradient(135deg, #aaa, #888);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: default;
+    }
+    .btn-apply.disabled:hover { transform: none; }
+    .apply-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== セクション共通 ===== */
+    .section { padding: 48px 20px; }
+    .section-title-wrap { text-align: center; margin-bottom: 32px; }
+    .section-title-en {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      color: #F5A623;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .section-title-ja {
+      display: block;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 900;
+      color: #1E1E1E;
+      letter-spacing: 0.05em;
+    }
+    .section-title-sub {
+      display: block;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+    }
+
+    /* ===== 出展企業セクション ===== */
+    .exhibitor-section {
+      background: #F5F0E8;
+    }
+    .exhibitor-list {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .exhibitor-item {
+      background: #fff;
+      border-radius: 50px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: 1px solid rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: #222;
+    }
+    .exhibitor-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    }
+    .exhibitor-icons {
+      display: flex;
+      gap: 4px;
+      font-size: 16px;
+      flex-shrink: 0;
+      min-width: 56px;
+    }
+    .exhibitor-name {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .exhibitor-arrow {
+      font-size: 18px;
+      color: #ccc;
+      flex-shrink: 0;
+    }
+    .coming-soon-note {
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+      margin-top: 16px;
+      font-style: italic;
+    }
+
+    /* ===== モーダル ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 0;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-width: 640px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px 20px 40px;
+      animation: slideUp 0.3s ease;
+      position: relative;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #555;
+    }
+    .modal-icons {
+      display: flex;
+      gap: 6px;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .modal-company-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+    .modal-company-name {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: #1E1E1E;
+    }
+    .modal-company-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-table-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: #555;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .modal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .modal-table tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .modal-table th {
+      width: 90px;
+      padding: 10px 8px;
+      text-align: left;
+      color: #888;
+      font-weight: 600;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+    .modal-table td {
+      padding: 10px 8px;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .modal-message-box {
+      background: #F5F0E8;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .modal-message-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .modal-message-label {
+      font-size: 11px;
+      color: #888;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .modal-message-text {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .job-url-link {
+      color: #F5A623;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .job-url-link:hover { text-decoration: underline; }
+
+    /* ===== フッター ===== */
+    .site-footer {
+      background: #1E1E1E;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (min-width: 640px) {
+      .hero { padding: 60px 40px 70px; }
+      .modal-overlay { align-items: center; padding: 20px; }
+      .modal-content { border-radius: 20px; max-height: 80vh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== サイトヘッダー ===== -->
+<header class="site-header">
+  <img class="logo" src="https://www.genspark.ai/api/files/s/8ow4Ml4t" alt="あぐリナビ就活FES." />
+</header>
+
+<!-- ===== ヒーローセクション ===== -->
+<section class="hero">
+  <div class="hero-logo-wrap">
+    <img src="https://www.genspark.ai/api/files/s/8ow4Ml4t" alt="あぐリナビ就活FES." />
+  </div>
+
+  <h1 class="hero-event-name">
+    <span class="accent-orange">農業関連特化！</span><br>
+    企業合同説明会
+  </h1>
+
+  <div class="event-info-cards">
+    <div class="event-info-card">
+      <div class="label">📅 開催日時</div>
+      <div class="value">2026年6月12日（金）<br>15:00 〜 17:00</div>
+    </div>
+    <div class="event-info-card">
+      <div class="label">📍 開催場所</div>
+      <div class="value">摂南大学<br>学校内〇〇棟 3F</div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn-apply disabled" onclick="alert('申込フォームは現在準備中です。\n公開まで今しばらくお待ちください！')">
+      📝 参加申込はこちら
+    </button>
+    <p class="apply-note">※ 申込フォームは準備中です</p>
+  </div>
+</section>
+
+<!-- ===== 出展企業セクション ===== -->
+<section class="section exhibitor-section">
+  <div class="section-title-wrap">
+    <span class="section-title-en">Exhibitor</span>
+    <span class="section-title-ja">出展企業</span>
+    <span class="section-title-sub">※随時更新</span>
+  </div>
+
+  <div class="exhibitor-list">
+
+    <!-- 
+      =============================================
+      ▼ 企業を追加するときはここをコピーしてください ▼
+      =============================================
+      <div class="exhibitor-item" onclick="openModal('company-XXX')">
+        <div class="exhibitor-icons">🐄🥛</div>
+        <div class="exhibitor-name">企業名</div>
+        <div class="exhibitor-arrow">›</div>
+      </div>
+      =============================================
+    -->
+
+    <!-- サンプル企業（後から差し替えてください） -->
+    <div class="exhibitor-item" onclick="openModal('company-sample1')">
+      <div class="exhibitor-icons">🐄🥛🌾</div>
+      <div class="exhibitor-name">株式会社〇〇牧場</div>
+      <div class="exhibitor-arrow">›</div>
+    </div>
+
+    <div class="exhibitor-item" onclick="openModal('company-sample2')">
+      <div class="exhibitor-icons">🐖🌿</div>
+      <div class="exhibitor-name">農業生産法人△△ファーム</div>
+      <div class="exhibitor-arrow">›</div>
+    </div>
+
+    <div class="exhibitor-item" onclick="openModal('company-sample3')">
+      <div class="exhibitor-icons">🥚🐓</div>
+      <div class="exhibitor-name">有限会社□□エッグ</div>
+      <div class="exhibitor-arrow">›</div>
+    </div>
+
+    <!-- ここまでサンプル企業 -->
+
+  </div>
+  <p class="coming-soon-note">▶ 出展企業情報は随時追加予定です</p>
+</section>
+
+<!-- ===== 再度申込ボタン（下部） ===== -->
+<section style="background:#1E1E1E; padding:40px 20px; text-align:center;">
+  <p style="color:rgba(255,255,255,0.7); margin-bottom:16px; font-size:14px; font-weight:700;">
+    参加のお申込みはこちらから
+  </p>
+  <button class="btn-apply disabled" onclick="alert('申込フォームは現在準備中です。\n公開まで今しばらくお待ちください！')">
+    📝 参加申込はこちら
+  </button>
+  <p style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.35);">※ 申込フォームは準備中です</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer class="site-footer">
+  <p>© 2026 AGRINAVI SHŪKATSU FES. All rights reserved.</p>
+</footer>
+
+
+<!-- ===== モーダル群 ===== -->
+
+<!-- 
+  =============================================
+  ▼ 企業詳細モーダルを追加するときはここをコピー ▼
+  =============================================
+  <div id="company-XXX" class="modal-overlay" onclick="closeModalOutside(event)">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('company-XXX')">×</button>
+      <div class="modal-icons">🐄🥛</div>
+      <div class="modal-company-logo">🏢</div>
+      <div class="modal-company-name">企業名</div>
+      <div class="modal-company-desc">企業紹介文をここに入れてください。</div>
+
+      <div class="modal-table-title">採用データ</div>
+      <table class="modal-table">
+        <tr><th>職種</th><td>〇〇職、△△職</td></tr>
+        <tr><th>勤務地</th><td>〇〇県・△△県</td></tr>
+      </table>
+
+      <div class="modal-table-title">企業概要</div>
+      <table class="modal-table">
+        <tr><th>事業内容</th><td>〇〇の製造・販売</td></tr>
+        <tr><th>設立年月</th><td>〇〇年〇月</td></tr>
+        <tr><th>本社住所</th><td>〇〇県〇〇市</td></tr>
+        <tr><th>従業員数</th><td>〇〇名</td></tr>
+        <tr><th>求人URL</th><td><a href="#" class="job-url-link">求人情報の詳細はこちら →</a></td></tr>
+      </table>
+
+      <div class="modal-message-box">
+        <div class="modal-message-icon">💬</div>
+        <div>
+          <div class="modal-message-label">企業からのメッセージ</div>
+          <div class="modal-message-text">メッセージをここに入れてください。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  =============================================
+-->
+
+<!-- サンプル企業①モーダル -->
+<div id="company-sample1" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('company-sample1')">×</button>
+    <div class="modal-icons">🐄🥛🌾</div>
+    <div class="modal-company-logo">🏢</div>
+    <div class="modal-company-name">株式会社〇〇牧場</div>
+    <div class="modal-company-desc">（企業紹介文がここに入ります。企業の特徴・強み・社風などを記載します。）</div>
+
+    <div class="modal-table-title">採用データ</div>
+    <table class="modal-table">
+      <tr><th>職種</th><td>①生産製造管理職<br>②営業事務・管理職</td></tr>
+      <tr><th>勤務地</th><td>①〇〇エリア<br>②△△エリア</td></tr>
+    </table>
+
+    <div class="modal-table-title">企業概要</div>
+    <table class="modal-table">
+      <tr><th>事業内容</th><td>（事業内容）</td></tr>
+      <tr><th>設立年月</th><td>（設立年月）</td></tr>
+      <tr><th>本社住所</th><td>（本社住所）</td></tr>
+      <tr><th>従業員数</th><td>（従業員数）</td></tr>
+      <tr><th>求人URL</th><td><a href="#" class="job-url-link">求人情報の詳細はこちら →</a></td></tr>
+    </table>
+
+    <div class="modal-message-box">
+      <div class="modal-message-icon">💬</div>
+      <div>
+        <div class="modal-message-label">企業からのメッセージ</div>
+        <div class="modal-message-text">（企業からのメッセージがここに入ります。）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- サンプル企業②モーダル -->
+<div id="company-sample2" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('company-sample2')">×</button>
+    <div class="modal-icons">🐖🌿</div>
+    <div class="modal-company-logo">🏢</div>
+    <div class="modal-company-name">農業生産法人△△ファーム</div>
+    <div class="modal-company-desc">（企業紹介文がここに入ります。）</div>
+
+    <div class="modal-table-title">採用データ</div>
+    <table class="modal-table">
+      <tr><th>職種</th><td>（職種情報）</td></tr>
+      <tr><th>勤務地</th><td>（勤務地情報）</td></tr>
+    </table>
+
+    <div class="modal-table-title">企業概要</div>
+    <table class="modal-table">
+      <tr><th>事業内容</th><td>（事業内容）</td></tr>
+      <tr><th>設立年月</th><td>（設立年月）</td></tr>
+      <tr><th>本社住所</th><td>（本社住所）</td></tr>
+      <tr><th>従業員数</th><td>（従業員数）</td></tr>
+      <tr><th>求人URL</th><td><a href="#" class="job-url-link">求人情報の詳細はこちら →</a></td></tr>
+    </table>
+
+    <div class="modal-message-box">
+      <div class="modal-message-icon">💬</div>
+      <div>
+        <div class="modal-message-label">企業からのメッセージ</div>
+        <div class="modal-message-text">（企業からのメッセージがここに入ります。）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- サンプル企業③モーダル -->
+<div id="company-sample3" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('company-sample3')">×</button>
+    <div class="modal-icons">🥚🐓</div>
+    <div class="modal-company-logo">🏢</div>
+    <div class="modal-company-name">有限会社□□エッグ</div>
+    <div class="modal-company-desc">（企業紹介文がここに入ります。）</div>
+
+    <div class="modal-table-title">採用データ</div>
+    <table class="modal-table">
+      <tr><th>職種</th><td>（職種情報）</td></tr>
+      <tr><th>勤務地</th><td>（勤務地情報）</td></tr>
+    </table>
+
+    <div class="modal-table-title">企業概要</div>
+    <table class="modal-table">
+      <tr><th>事業内容</th><td>（事業内容）</td></tr>
+      <tr><th>設立年月</th><td>（設立年月）</td></tr>
+      <tr><th>本社住所</th><td>（本社住所）</td></tr>
+      <tr><th>従業員数</th><td>（従業員数）</td></tr>
+      <tr><th>求人URL</th><td><a href="#" class="job-url-link">求人情報の詳細はこちら →</a></td></tr>
+    </table>
+
+    <div class="modal-message-box">
+      <div class="modal-message-icon">💬</div>
+      <div>
+        <div class="modal-message-label">企業からのメッセージ</div>
+        <div class="modal-message-text">（企業からのメッセージがここに入ります。）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== JavaScript ===== -->
+<script>
+  function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  function closeModalOutside(e) {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  // ESCキーで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(el => {
+        el.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
