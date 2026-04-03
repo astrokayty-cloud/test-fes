@@ -101,6 +101,14 @@
     }
     .hero-event-name span.accent-orange { color: #E77E00; }
     .hero-event-name span.accent-blue   { color: #00B0F0; }
+    .hero-subcopy {
+      font-size: clamp(13px, 3.4vw, 16px);
+      font-weight: 700;
+      color: #6b5520;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+      margin: -12px 0 24px;
+    }
 
     .event-info-cards {
       display: flex;
@@ -219,6 +227,48 @@
     .visit-info-box p + p {
       margin-top: 10px;
     }
+    .about-event-section {
+      background: #fffdf0;
+      padding-top: 28px;
+      padding-bottom: 18px;
+    }
+    .about-event-box {
+      max-width: 760px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(231,126,0,0.14);
+      border-radius: 20px;
+      padding: 24px 22px;
+      box-shadow: 0 4px 16px rgba(122,90,0,0.05);
+      color: #4a3a14;
+    }
+    .about-event-box p {
+      font-size: 15px;
+      line-height: 1.9;
+    }
+    .about-event-points {
+      list-style: none;
+      margin: 14px 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .about-event-points li {
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 700;
+      padding-left: 1.4em;
+      position: relative;
+    }
+    .about-event-points li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #E77E00;
+      font-weight: 900;
+    }
     .exhibitor-cta {
       margin-top: 24px;
       text-align: center;
@@ -252,6 +302,21 @@
     .exhibitor-item:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    }
+    .exhibitor-item-disabled {
+      cursor: default;
+      opacity: 0.9;
+    }
+    .exhibitor-item-disabled:hover {
+      transform: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .exhibitor-status {
+      font-size: 12px;
+      font-weight: 700;
+      color: #9a8350;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
     /* ===== 業種バッジ ===== */
     .genre-badge {
@@ -629,6 +694,7 @@
     <span class="accent-orange">農や食を仕事に！</span><br>
     合同説明会<br class="sp-only-break"> in 摂南大学 枚方キャンパス
   </h1>
+  <p class="hero-subcopy">参加無料・私服OK・1人参加歓迎</p>
 
   <div class="event-info-cards">
     <div class="event-info-card">
@@ -645,6 +711,23 @@
     <a class="btn-apply" href="https://e-ve.event-form.jp/event/127871/c4lKXM" target="_blank" rel="noopener">
       参加申込はこちら
     </a>
+  </div>
+</section>
+
+<!-- ===== 農・食に特化した合同説明会とは？ ===== -->
+<section class="section about-event-section">
+  <div class="section-title-wrap">
+    <span class="section-title-en">About</span>
+    <span class="section-title-ja">農・食に特化した合同説明会とは？</span>
+  </div>
+  <div class="about-event-box">
+    <p>本イベントは、農や食とその関連分野の企業のみを集めた農学部のみなさまにピッタリな機会となっています。</p>
+    <ul class="about-event-points">
+      <li>興味のある分野を深く知れる</li>
+      <li>現場のリアルな話を直接聞ける</li>
+      <li>自分に合うかどうかを具体的にイメージできる</li>
+    </ul>
+    <p>まずは1つの業界をしっかり理解することが、納得のいく就活の第一歩になります。</p>
   </div>
 </section>
 
@@ -672,21 +755,21 @@
 
     <!-- サンプル企業（後から差し替えてください） -->
     <div class="exhibitor-item" onclick="openModal('company-sample1')">
-      <span class="genre-badge genre-chikusan">畜産</span>
-      <div class="exhibitor-name">株式会社〇〇牧場</div>
+      <span class="genre-badge genre-chikusan">養鶏</span>
+      <div class="exhibitor-name">株式会社クレストジャパンホールディングス</div>
       <div class="exhibitor-arrow">›</div>
     </div>
 
-    <div class="exhibitor-item" onclick="openModal('company-sample2')">
+   <div class="exhibitor-item exhibitor-item-disabled">
       <span class="genre-badge genre-noen">農園</span>
-      <div class="exhibitor-name">農業生産法人△△ファーム</div>
-      <div class="exhibitor-arrow">›</div>
+      <div class="exhibitor-name">株式会社アグリケーション</div>
+      <div class="exhibitor-status">詳細準備中</div>
     </div>
 
-    <div class="exhibitor-item" onclick="openModal('company-sample3')">
+   <div class="exhibitor-item exhibitor-item-disabled">
       <span class="genre-badge genre-nogyokanren">農業関連</span>
-      <div class="exhibitor-name">有限会社□□エッグ</div>
-      <div class="exhibitor-arrow">›</div>
+      <div class="exhibitor-name">株式会社サラダコスモ</div>
+      <div class="exhibitor-status">詳細準備中</div>
     </div>
 
     <!-- ここまでサンプル企業 -->
@@ -777,29 +860,31 @@
 <div id="company-sample1" class="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal('company-sample1')">×</button>
-    <div class="modal-company-name">株式会社〇〇牧場</div>
-    <div class="modal-company-desc">（企業紹介文がここに入ります。企業の特徴・強み・社風などを記載します。）</div>
+    <div class="modal-company-name">株式会社クレストジャパンホールディングス</div>
+    <div class="modal-company-desc">当社は、関東、中部、関西と全国に18拠点を展開し、安定した生産や経営を維持できる体制を構築しています。<br>創業から100年を越え、養鶏、養豚事業において国内有数の規模で日本の畜産業を支えてきております。</div>
 
     <div class="modal-table-title">採用データ</div>
     <table class="modal-table">
-      <tr><th>職種</th><td>①生産製造管理職<br>②営業事務・管理職</td></tr>
-      <tr><th>勤務地</th><td>①〇〇エリア<br>②△△エリア</td></tr>
+      <tr><th>職種</th><td>①生産製造管理職<br>→（生産管理、製造管理、品質管理）<br>②営業事務・管理職<br>→（国内営業、海外営業、販売管理、総務人事、財務経理）<br>③システム管理職<br>→（システムの及び統括管理）</td></tr>
+      <tr><th>勤務地</th><td>関西エリア（兵庫県・岡山県）<br>関東エリア（千葉県・福島県）<br>中部エリア（愛知県・岐阜県・三重県）</td></tr>
     </table>
 
     <div class="modal-table-title">企業概要</div>
     <table class="modal-table">
-      <tr><th>事業内容</th><td>（事業内容）</td></tr>
-      <tr><th>設立年月</th><td>（設立年月）</td></tr>
-      <tr><th>本社住所</th><td>（本社住所）</td></tr>
-      <tr><th>従業員数</th><td>（従業員数）</td></tr>
-      <tr><th>求人URL</th><td><a href="#" class="job-url-link">求人情報の詳細はこちら →</a></td></tr>
+      <tr><th>事業内容</th><td>・鶏卵及び豚肉の生産・販売・輸出<br>・海外畜産設備及び種豚の輸入販売<br>・有機堆肥・肥料の製造販売・輸出</td></tr>
+      <tr><th>設立年月</th><td>1963年4月（創業 1919年）</td></tr>
+      <tr><th>本社住所</th><td>愛知県小牧市大草5995</td></tr>
+      <tr><th>従業員数</th><td>510名（グループ計）</td></tr>
+      <tr><th>求人URL</th><td><a href="https://www.crestfarm.co.jp/recruit/fresh/" class="job-url-link" target="_blank" rel="noopener">
+  求人情報の詳細はこちら →
+</a></td></tr>
     </table>
 
     <div class="modal-message-box">
       <div class="modal-message-icon">💬</div>
       <div>
         <div class="modal-message-label">企業からのメッセージ</div>
-        <div class="modal-message-text">（企業からのメッセージがここに入ります。）</div>
+        <div class="modal-message-text">私達は生産から販売までを一貫して展開する畜産食品メーカーです。<br>畜産業界に興味のある方は是非、ブースにお立ち寄り下さい。</div>
       </div>
     </div>
   </div>
